@@ -69,7 +69,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web
                 if (env.IsDevelopment())
                 {
                     spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 50);
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
                 }
             });
         }
