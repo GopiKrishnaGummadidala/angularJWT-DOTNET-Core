@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Rhenus.AngularJWTDOTNETCore.Web
 {
@@ -67,6 +68,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 0, seconds: 50);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
