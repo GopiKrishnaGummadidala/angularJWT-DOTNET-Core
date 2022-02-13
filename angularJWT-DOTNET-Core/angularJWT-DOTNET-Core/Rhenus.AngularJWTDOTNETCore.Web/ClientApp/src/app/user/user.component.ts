@@ -13,7 +13,7 @@ export interface Car {
   styleUrls: ["./user.component.scss"],
 })
 export class UserComponent implements OnInit {
-  cars: Car[];
+  cars: Car[] = [];
   constructor() {}
 
   ngOnInit(): void {
