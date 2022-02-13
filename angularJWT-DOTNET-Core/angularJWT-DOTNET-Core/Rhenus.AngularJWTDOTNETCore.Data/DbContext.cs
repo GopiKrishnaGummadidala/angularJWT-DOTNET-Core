@@ -1,17 +1,17 @@
 ﻿using LiteDB;
+using Microsoft.Extensions.Configuration;
 using Rhenus.AngularJWTDOTNETCore.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 
 namespace Rhenus.AngularJWTDOTNETCore.Data
 {
     public class DbContext : IDbContext
     {
         private static string connectionString { get; set; }
-        public DbContext()
+        public DbContext(IConfiguration configuration)
         {
-            connectionString = ConfigurationManager.AppSettings["DbPath"];
+            connectionString = configuration["DbConfiguration:DBPath"];
         }
 
         public bool AddUser(UserModel user)
