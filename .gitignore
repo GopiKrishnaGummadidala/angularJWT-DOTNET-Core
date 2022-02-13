@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/angularJWT-DOTNET-Core/angularJWT-DOTNET-Core/Rhenus.AngularJWTDOTNETCore.Models
+/angularJWT-DOTNET-Core/angularJWT-DOTNET-Core/Rhenus.AngularJWTDOTNETCore.Data
+/angularJWT-DOTNET-Core/angularJWT-DOTNET-Core/.vs/angularJWT-DOTNET-Core/DesignTimeBuild/.dtbcache.v2
