@@ -1,5 +1,5 @@
 import { User } from "./../models/user.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 
 @Injectable()
@@ -20,6 +20,13 @@ export class UserService {
   }
 
   addUser(user: User) {
+    // const headers = new HttpHeaders();
+    // headers.append("Content-Type", "application/x-www-form-urlencoded");
+    // {
+    //     FirstName: user.firstName,
+    //     LastName: user.lastName,
+    //     DOB: user.dob,
+    //   }
     return this.http
       .post<boolean>(this.apiUrl, user)
       .toPromise()

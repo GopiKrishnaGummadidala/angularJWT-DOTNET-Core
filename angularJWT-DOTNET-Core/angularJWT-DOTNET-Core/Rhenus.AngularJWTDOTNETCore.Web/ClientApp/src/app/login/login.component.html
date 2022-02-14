@@ -1,0 +1,41 @@
+<form [formGroup]="loginForm">
+  <div class="p-grid">
+    <div class="p-col-2">
+      <label for="username">User Name/Email</label>
+    </div>
+    <div class="p-col-6">
+      <input
+        type="text"
+        pInputText
+        id="username"
+        formControlName="username"
+        required
+        autofocus
+      />
+    </div>
+  </div>
+  <div class="p-grid">
+    <div class="p-col-2">
+      <label for="pwd">Password</label>
+    </div>
+    <div class="p-col-6">
+      <input
+        type="password"
+        pInputText
+        id="pwd"
+        formControlName="password"
+        required
+        autofocus
+      />
+    </div>
+  </div>
+  <div class="p-grid">
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      (click)="onLogin()"
+    ></button>
+  </div>
+</form>

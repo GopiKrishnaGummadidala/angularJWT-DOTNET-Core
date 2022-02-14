@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Rhenus.AngularJWTDOTNETCore.Data;
+using Rhenus.AngularJWTDOTNETCore.Models;
 using Rhenus.AngularJWTDOTNETCore.Models.Mapping;
 using Rhenus.AngularJWTDOTNETCore.Models.PostRequest;
 
@@ -7,6 +9,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private IDbContext _dbContext { get; set; }
@@ -32,16 +35,16 @@ namespace Rhenus.AngularJWTDOTNETCore.Web.Controllers
 
         // POST api/user
         [HttpPost]
-        public IActionResult Post([FromBody] UserPostRequest user)
+        public IActionResult Post([FromForm] UserViewModel user)
         {
-            return Ok(_dbContext.AddUser(user.MapPostRequestToVM()));
+            return Ok(_dbContext.AddUser(user));
         }
 
         // PUT api/user/1
         [HttpPut]
-        public IActionResult Put([FromBody] UserPostRequest user)
+        public IActionResult Put([FromForm] UserViewModel user)
         {
-            return Ok(_dbContext.UpdateUser(user.MapPostRequestToVM()));
+            return Ok(_dbContext.UpdateUser(user));
         }
 
         // DELETE api/user/5
