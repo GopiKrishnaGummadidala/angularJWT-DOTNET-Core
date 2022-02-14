@@ -21,7 +21,7 @@
         class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
       >
-        <ul class="navbar-nav flex-grow">
+        <ul class="navbar-nav flex-grow tab-list">
           <li
             class="nav-item"
             [routerLinkActive]="['link-active']"
@@ -41,6 +41,15 @@
             <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
               >Fetch data</a
             >
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <button
+              pButton
+              pRipple
+              [label]="userLoggedIn ? 'Logout' : 'LogIn'"
+              [icon]="userLoggedIn ? 'pi pi-sign-out' : 'pi pi-sign-in'"
+              (click)="logOut()"
+            ></button>
           </li>
         </ul>
       </div>
