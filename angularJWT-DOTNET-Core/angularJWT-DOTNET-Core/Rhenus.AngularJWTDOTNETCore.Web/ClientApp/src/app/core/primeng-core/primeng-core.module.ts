@@ -9,6 +9,7 @@ import { DialogModule } from "primeng-lts/dialog";
 import { ConfirmDialogModule } from "primeng-lts/confirmdialog";
 import { ToolbarModule } from "primeng-lts/toolbar";
 import { InputTextModule } from "primeng-lts/inputtext";
+import { CalendarModule } from "primeng-lts/calendar";
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,7 @@ import { InputTextModule } from "primeng-lts/inputtext";
     ConfirmDialogModule,
     ToolbarModule,
     InputTextModule,
+    CalendarModule,
   ],
   exports: [
     CommonModule,
@@ -35,6 +37,7 @@ import { InputTextModule } from "primeng-lts/inputtext";
     ConfirmDialogModule,
     ToolbarModule,
     InputTextModule,
+    CalendarModule,
   ],
 })
 export class PrimeNgCoreModule {}

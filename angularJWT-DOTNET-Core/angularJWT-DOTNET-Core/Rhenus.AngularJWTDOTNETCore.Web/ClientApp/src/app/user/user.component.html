@@ -1,22 +1,6 @@
 <p-toolbar styleClass="p-mb-4">
   <ng-template pTemplate="left">
-    <button
-      pButton
-      pRipple
-      label="New"
-      icon="pi pi-plus"
-      class="p-button-success p-mr-2"
-      (click)="openNew()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      [label]="Delete"
-      icon="pi pi-trash"
-      class="p-button-danger"
-      (click)="deleteSelectedUsers()"
-      [disabled]="!selectedUsers || !selectedUsers.length"
-    ></button>
+    <span>Manage Users</span>
   </ng-template>
 </p-toolbar>
 
@@ -35,7 +19,14 @@
 >
   <ng-template pTemplate="caption">
     <div class="p-d-flex p-ai-center p-jc-between">
-      <h5 class="p-m-0">Manage Users</h5>
+      <button
+        pButton
+        pRipple
+        label="New"
+        icon="pi pi-plus"
+        class="p-button-success p-m-0"
+        (click)="addNew()"
+      ></button>
       <span class="p-input-icon-left">
         <i class="pi pi-search"></i>
         <input
@@ -102,4 +93,6 @@
 <app-user-edit-dialog
   [userEditDialog]="userEditDialog"
   [user]="user"
+  (dialogClosed)="editDialogClosed($event)"
+  (saveClicked)="saveUser($event)"
 ></app-user-edit-dialog>

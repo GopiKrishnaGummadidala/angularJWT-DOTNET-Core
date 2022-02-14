@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
@@ -12,6 +12,7 @@ import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { PrimeNgCoreModule } from "./core/primeng-core/primeng-core.module";
 import { UserModule } from "./user/user.module";
 import { UserComponent } from "./user/user.component";
+import { HttpErrorHandlerInterceptor } from "./services/interceptors/http-error-handler.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { UserComponent } from "./user/user.component";
     ),
     UserModule,
   ],
-  providers: [],
+  providers: [HttpErrorHandlerInterceptor],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

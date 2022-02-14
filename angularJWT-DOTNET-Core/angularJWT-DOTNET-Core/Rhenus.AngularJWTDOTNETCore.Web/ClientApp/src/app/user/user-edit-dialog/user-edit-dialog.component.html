@@ -3,70 +3,63 @@
   [style]="{ width: '50%' }"
   header="User Details"
   [modal]="true"
+  [closable]="false"
   styleClass="p-fluid"
 >
   <ng-template pTemplate="content">
-    <div class="p-field">
-      <label for="fname">First Name</label>
-      <input
-        type="text"
-        pInputText
-        id="fname"
-        [(ngModel)]="user.firstName"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !user.firstName"
-        >First Name is required.</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="lname">Last Name</label>
-      <input
-        type="text"
-        pInputText
-        id="lname"
-        [(ngModel)]="user.lastName"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !user.lastName"
-        >Last Name is required.</small
-      >
-    </div>
-    <div class="p-field">
-      <label for="dob">Name</label>
-      <input
-        type="text"
-        pInputText
-        id="dob"
-        [(ngModel)]="user.dob"
-        required
-        autofocus
-      />
-      <small class="p-invalid" *ngIf="submitted && !user.dob"
-        >DOB is required.</small
-      >
-    </div>
+    <form [formGroup]="userForm">
+      <div class="p-field">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          pInputText
+          id="fname"
+          formControlName="firstName"
+          required
+          autofocus
+        />
+      </div>
+      <div class="p-field">
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          pInputText
+          id="lname"
+          formControlName="lastName"
+          required
+          autofocus
+        />
+      </div>
+      <div class="p-field">
+        <label for="dob">DOB</label>
+        <p-calendar
+          formControlName="dob"
+          appendTo="body"
+          dateFormat="mm/dd/yy"
+        ></p-calendar>
+      </div>
+    </form>
   </ng-template>
   <ng-template pTemplate="footer">
-    <button
-      pButton
-      pRipple
-      label="Cancel"
-      icon="pi pi-times"
-      class="p-button-text"
-      (click)="hideDialog()"
-    ></button>
-    <button
-      pButton
-      pRipple
-      label="Save"
-      icon="pi pi-check"
-      class="p-button-text"
-      (click)="saveUser()"
-    ></button>
+    <div class="p-field p-grid">
+      <button
+        pButton
+        pRipple
+        label="Cancel"
+        icon="pi pi-times"
+        class="p-button-text"
+        (click)="hideDialog()"
+      ></button>
+      <button
+        pButton
+        pRipple
+        label="Save"
+        icon="pi pi-check"
+        class="p-button-text"
+        (click)="saveUser()"
+      ></button>
+    </div>
   </ng-template>
 </p-dialog>
 
-<p-confirmDialog [style]="{ width: '40%' }"> </p-confirmDialog>
+<p-confirmDialog [style]="{ width: '60%' }"> </p-confirmDialog>

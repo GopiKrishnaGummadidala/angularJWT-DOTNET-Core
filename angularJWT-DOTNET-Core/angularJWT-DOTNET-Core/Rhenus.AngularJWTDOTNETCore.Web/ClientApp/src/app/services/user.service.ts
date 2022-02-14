@@ -18,4 +18,34 @@ export class UserService {
         return data;
       });
   }
+
+  addUser(user: User) {
+    return this.http
+      .post<boolean>(this.apiUrl, user)
+      .toPromise()
+      .then((res) => <boolean>res)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  updateUser(user: User) {
+    return this.http
+      .put<boolean>(this.apiUrl, user)
+      .toPromise()
+      .then((res) => <boolean>res)
+      .then((data) => {
+        return data;
+      });
+  }
+
+  deleteUser(id: Number) {
+    return this.http
+      .delete<boolean>(this.apiUrl + "?id=" + id)
+      .toPromise()
+      .then((res) => <boolean>res)
+      .then((data) => {
+        return data;
+      });
+  }
 }

@@ -15,13 +15,13 @@ namespace Rhenus.AngularJWTDOTNETCore.Data
             connectionString = configuration["DbConfiguration:DBPath"];
         }
 
-        public bool AddUser(UserModel user)
+        public bool AddUser(UserViewModel user)
         {
             try
             {
                 using (var db = new LiteDatabase(connectionString))
                 {
-                    var collection = db.GetCollection<UserModel>("Users");
+                    var collection = db.GetCollection<UserViewModel>("Users");
                     collection.Insert(user);
                     return true;
                 }
@@ -39,7 +39,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Data
             {
                 using (var db = new LiteDatabase(connectionString))
                 {
-                    var collection = db.GetCollection<UserModel>("Users");
+                    var collection = db.GetCollection<UserViewModel>("Users");
                     return collection.Delete(id);
                 }
             }
@@ -50,31 +50,31 @@ namespace Rhenus.AngularJWTDOTNETCore.Data
             }
         }
 
-        public UserModel GetUserById(int id)
+        public UserViewModel GetUserById(int id)
         {
             using (var db = new LiteDatabase(connectionString))
             {
-                var collection = db.GetCollection<UserModel>("Users");
+                var collection = db.GetCollection<UserViewModel>("Users");
                 return collection.FindById(id);
             }
         }
 
-        public List<UserModel> GetUsers()
+        public List<UserViewModel> GetUsers()
         {
             using (var db = new LiteDatabase(connectionString))
             {
-                var collection = db.GetCollection<UserModel>("Users");
+                var collection = db.GetCollection<UserViewModel>("Users");
                 return collection.Find(c => c.Id != 0).ToList();
             }
         }
 
-        public bool UpdateUser(UserModel user)
+        public bool UpdateUser(UserViewModel user)
         {
             try
             {
                 using (var db = new LiteDatabase(connectionString))
                 {
-                    var collection = db.GetCollection<UserModel>("Users");
+                    var collection = db.GetCollection<UserViewModel>("Users");
                     return collection.Update(user);
                 }
             }

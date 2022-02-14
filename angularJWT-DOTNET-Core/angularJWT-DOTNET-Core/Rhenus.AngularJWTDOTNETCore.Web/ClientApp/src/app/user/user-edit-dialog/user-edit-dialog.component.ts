@@ -1,6 +1,6 @@
-import { UserService } from "./../../services/user.service";
-import { Component, Input, OnInit } from "@angular/core";
-import { User } from "src/app/models/user.model";
+import { User } from "./../../models/user.model";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-user-edit-dialog",
@@ -8,41 +8,54 @@ import { User } from "src/app/models/user.model";
   styleUrls: ["./user-edit-dialog.component.scss"],
 })
 export class UserEditDialogComponent implements OnInit {
+  private _user: User;
   @Input() userEditDialog;
-  @Input() user: User;
-  submitted: boolean;
+  userForm: FormGroup;
+  get user(): User {
+    return this._user;
+  }
+  @Input() set user(value: User) {
+    this._user = value;
+    this.fillUserForm();
+  }
+  @Output() public dialogClosed = new EventEmitter<boolean>();
+  @Output() public saveClicked = new EventEmitter<User>();
 
-  constructor(private userService: UserService) {}
+  constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      dob: ["", [Validators.required]],
+    });
+  }
 
   hideDialog() {
-    this.userEditDialog = false;
+    this.user = new User();
+    this.dialogClosed.emit(false);
+    this.userForm.reset();
+  }
+
+  fillUserForm() {
+    if (this.user && this.userForm) {
+      this.userForm.get("firstName").setValue(this.user.firstName);
+      this.userForm.get("lastName").setValue(this.user.lastName);
+      if (this.user.dob) {
+        this.userForm.get("dob").setValue(new Date(this.user.dob));
+      }
+    }
   }
 
   saveUser() {
-    // if (this.product.name.trim()) {
-    //   if (this.product.id) {
-    //     this.products[this.findIndexById(this.product.id)] = this.product;
-    //     this.messageService.add({
-    //       severity: "success",
-    //       summary: "Successful",
-    //       detail: "Product Updated",
-    //       life: 3000,
-    //     });
-    //   } else {
-    //     this.product.id = this.createId();
-    //     this.product.image = "product-placeholder.svg";
-    //     this.products.push(this.product);
-    //     this.messageService.add({
-    //       severity: "success",
-    //       summary: "Successful",
-    //       detail: "Product Created",
-    //       life: 3000,
-    //     });
-    //   }
-
-    //   this.products = [...this.products];
-    this.userEditDialog = false;
+    if (this.userForm.invalid) {
+      return;
+    }
+    this.user.firstName = this.userForm.get("firstName").value;
+    this.user.lastName = this.userForm.get("lastName").value;
+    this.user.dob = this.userForm.get("dob").value;
+    this.saveClicked.emit(this.user);
+    this.hideDialog();
+    this.user = new User();
   }
 }

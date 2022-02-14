@@ -5,15 +5,16 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root",
 })
 export class UiLoaderService {
-  public uiBlocked$ = new BehaviorSubject<boolean>(false);
+  private uiBlockedSub = new BehaviorSubject<boolean>(false);
+  public uiBlocked$ = this.uiBlockedSub.asObservable();
 
   constructor() {}
 
   public blockUi(): void {
-    this.uiBlocked$.next(true);
+    this.uiBlockedSub.next(true);
   }
 
   public unBlockUi(): void {
-    this.uiBlocked$.next(false);
+    this.uiBlockedSub.next(false);
   }
 }
