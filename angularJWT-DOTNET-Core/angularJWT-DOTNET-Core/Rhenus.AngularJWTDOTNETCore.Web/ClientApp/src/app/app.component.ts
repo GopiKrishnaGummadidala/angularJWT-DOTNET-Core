@@ -1,9 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+import { UiLoaderService } from "./services/ui-loader.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html'
+  selector: "app-root",
+  templateUrl: "./app.component.html",
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+  public uiBlocked$: Observable<boolean>;
+  title = "app";
+  constructor(private uiService: UiLoaderService) {}
+
+  ngOnInit() {
+    this.uiBlocked$ = this.uiService.uiBlocked$;
+  }
 }

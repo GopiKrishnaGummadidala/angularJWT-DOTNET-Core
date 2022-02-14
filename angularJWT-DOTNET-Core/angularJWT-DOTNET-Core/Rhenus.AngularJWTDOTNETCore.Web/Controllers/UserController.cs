@@ -22,7 +22,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web.Controllers
         }
 
         // GET api/user/1
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(_dbContext.GetUserById(id));

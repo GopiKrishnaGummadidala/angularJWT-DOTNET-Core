@@ -1,18 +1,105 @@
-<p-table [value]="cars">
+<p-toolbar styleClass="p-mb-4">
+  <ng-template pTemplate="left">
+    <button
+      pButton
+      pRipple
+      label="New"
+      icon="pi pi-plus"
+      class="p-button-success p-mr-2"
+      (click)="openNew()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      [label]="Delete"
+      icon="pi pi-trash"
+      class="p-button-danger"
+      (click)="deleteSelectedUsers()"
+      [disabled]="!selectedUsers || !selectedUsers.length"
+    ></button>
+  </ng-template>
+</p-toolbar>
+
+<p-table
+  #dt
+  [value]="users"
+  [rows]="10"
+  [paginator]="true"
+  [globalFilterFields]="['firstName', 'lastName', 'dob']"
+  responsiveLayout="stack"
+  [(selection)]="selectedUsers"
+  [rowHover]="true"
+  dataKey="id"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [showCurrentPageReport]="true"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <h5 class="p-m-0">Manage Users</h5>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal($event.target.value, 'contains')"
+          placeholder="Search..."
+        />
+      </span>
+    </div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th>Vin</th>
-      <th>Year</th>
-      <th>Brand</th>
-      <th>Color</th>
+      <th style="width: 3rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th pSortableColumn="firstName">
+        First Name <p-sortIcon field="firstName"></p-sortIcon>
+      </th>
+      <th pSortableColumn="lastName">
+        Last Name <p-sortIcon field="lastName"></p-sortIcon>
+      </th>
+      <th pSortableColumn="dob">DOB <p-sortIcon field="dob"></p-sortIcon></th>
+      <th></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-car>
+  <ng-template pTemplate="body" let-user>
     <tr>
-      <td>{{ car.vin }}</td>
-      <td>{{ car.year }}</td>
-      <td>{{ car.brand }}</td>
-      <td>{{ car.color }}</td>
+      <td>
+        <p-tableCheckbox [value]="user"></p-tableCheckbox>
+      </td>
+      <td>
+        <span class="p-column-title"><b>First Name</b></span
+        >{{ user.firstName }}
+      </td>
+      <td>
+        <span class="p-column-title"><b>Last Name</b></span
+        >{{ user.lastName }}
+      </td>
+      <td>
+        <span class="p-column-title"><b>DOB</b></span
+        >{{ user.dob | date: "shortDate" }}
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-pencil"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="editUser(user)"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-warning"
+          (click)="deleteUser(user)"
+        ></button>
+      </td>
     </tr>
   </ng-template>
 </p-table>
+
+<app-user-edit-dialog
+  [userEditDialog]="userEditDialog"
+  [user]="user"
+></app-user-edit-dialog>

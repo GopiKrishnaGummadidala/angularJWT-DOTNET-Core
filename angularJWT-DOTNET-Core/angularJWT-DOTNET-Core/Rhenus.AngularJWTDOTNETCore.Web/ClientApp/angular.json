@@ -24,6 +24,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/primeng-lts/resources/themes/saga-blue/theme.css",
               "node_modules/primeng-lts/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.css"
             ],

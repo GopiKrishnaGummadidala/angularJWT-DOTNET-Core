@@ -9,8 +9,9 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
+import { PrimeNgCoreModule } from "./core/primeng-core/primeng-core.module";
+import { UserModule } from "./user/user.module";
 import { UserComponent } from "./user/user.component";
-import { TableModule } from "primeng-lts/table";
 
 @NgModule({
   declarations: [
@@ -19,14 +20,13 @@ import { TableModule } from "primeng-lts/table";
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    UserComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    TableModule,
+    PrimeNgCoreModule,
     RouterModule.forRoot(
       [
         { path: "", component: HomeComponent, pathMatch: "full" },
@@ -36,6 +36,7 @@ import { TableModule } from "primeng-lts/table";
       ],
       { relativeLinkResolution: "legacy" }
     ),
+    UserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

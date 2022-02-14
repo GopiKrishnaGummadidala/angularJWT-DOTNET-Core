@@ -5,7 +5,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Data
 {
     public interface IDbContext
     {
-        IEnumerable<UserModel> GetUsers();
+        List<UserModel> GetUsers();
         bool AddUser(UserModel user);
         UserModel GetUserById(int id);
         bool UpdateUser(UserModel user);

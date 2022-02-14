@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Rhenus.AngularJWTDOTNETCore.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Rhenus.AngularJWTDOTNETCore.Data
 {
@@ -58,12 +59,12 @@ namespace Rhenus.AngularJWTDOTNETCore.Data
             }
         }
 
-        public IEnumerable<UserModel> GetUsers()
+        public List<UserModel> GetUsers()
         {
             using (var db = new LiteDatabase(connectionString))
             {
                 var collection = db.GetCollection<UserModel>("Users");
-                return collection.Find(c => c.Id != 0);
+                return collection.Find(c => c.Id != 0).ToList();
             }
         }
 

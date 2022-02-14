@@ -28,7 +28,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddScoped<IDbContext, DbContext>();
+            services.AddSingleton<IDbContext, DbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,8 @@
 <body>
+  <p-toast position="top-right"></p-toast>
+  <p-blockUI [blocked]="uiBlocked$ | async" [baseZIndex]="1000">
+    <p-progressSpinner></p-progressSpinner>
+  </p-blockUI>
   <app-nav-menu></app-nav-menu>
   <div class="container">
     <router-outlet></router-outlet>
