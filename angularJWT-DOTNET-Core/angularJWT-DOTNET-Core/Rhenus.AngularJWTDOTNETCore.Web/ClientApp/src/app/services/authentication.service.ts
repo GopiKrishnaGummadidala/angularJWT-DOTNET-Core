@@ -6,14 +6,14 @@ import { map } from "rxjs/operators";
 @Injectable()
 export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<string> =
-    new BehaviorSubject<string>("");
+    new BehaviorSubject<string>(localStorage.getItem("UserName"));
   public currentUser: Observable<string>;
   constructor(private http: HttpClient) {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get currentUserName(): string {
-    return this.currentUserSubject.value;
+    return localStorage.getItem("UserName");
   }
 
   login(username: string, password: string) {
@@ -23,6 +23,7 @@ export class AuthenticationService {
         if (user && user.token) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem("TokenInfo", JSON.stringify(user));
+          localStorage.setItem("UserName", username);
         }
         this.currentUserSubject.next(username);
         return user;
@@ -33,6 +34,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem("TokenInfo");
+    localStorage.removeItem("UserName");
     this.currentUserSubject.next(null);
   }
 }

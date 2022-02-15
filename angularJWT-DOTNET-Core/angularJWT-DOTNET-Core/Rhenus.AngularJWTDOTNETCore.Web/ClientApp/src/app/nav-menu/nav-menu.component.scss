@@ -20,13 +20,10 @@ html {
   li {
     padding: 8px 10px;
   }
-  a,
-  li.active {
-    background-color: #d0d0d5;
-  }
-
-  a {
-    color: #005aa5;
+  li:hover {
+    a {
+      color: #005aa5 !important;
+    }
   }
 }
 

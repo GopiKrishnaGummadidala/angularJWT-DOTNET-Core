@@ -28,7 +28,6 @@ namespace Rhenus.AngularJWTDOTNETCore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -47,7 +46,6 @@ namespace Rhenus.AngularJWTDOTNETCore.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-            services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase);
             services.AddSingleton<IDbContext, DbContext>();
         }
 

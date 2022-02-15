@@ -1,0 +1,13 @@
+@media screen and (max-width: 40rem) {
+  :host ::ng-deep {
+    .p-col-2 {
+      width: 30%;
+    }
+    .p-col-4 {
+      width: 70%;
+    }
+    .p-col-6 {
+      width: 100%;
+    }
+  }
+}

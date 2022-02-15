@@ -22,7 +22,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${tokenInfo.token}`,
-          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+          // "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
         },
       });
     }

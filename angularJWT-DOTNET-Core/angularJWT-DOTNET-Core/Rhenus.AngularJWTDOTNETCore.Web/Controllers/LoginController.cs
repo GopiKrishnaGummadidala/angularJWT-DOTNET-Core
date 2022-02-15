@@ -63,7 +63,7 @@ namespace Rhenus.AngularJWTDOTNETCore.Web.Controllers
 
             //Validate the User Credentials  
             //Demo Purpose, I have Passed HardCoded User Information  
-            if (login.Username == "Rhenus")
+            if (login.Username == "Rhenus" && login.Password == "123")
             {
                 user = new LoginPostRequest { Username = "Rhenus", EmailAddress = "test@gmail.com" };
             }

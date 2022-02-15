@@ -1,7 +1,7 @@
-<form [formGroup]="loginForm">
+<form [formGroup]="loginForm" class="p-pt-3">
   <div class="ui-fluid formgrid p-grid">
     <div class="p-field p-col">
-      <label for="username" class="p-col-2">User Name/Email</label>
+      <label for="username" class="p-col-2">User Name</label>
       <input
         type="text"
         pInputText
@@ -32,7 +32,7 @@
       <button
         pButton
         pRipple
-        label="Save"
+        label="Login"
         icon="pi pi-check"
         (click)="onLogin()"
       ></button>

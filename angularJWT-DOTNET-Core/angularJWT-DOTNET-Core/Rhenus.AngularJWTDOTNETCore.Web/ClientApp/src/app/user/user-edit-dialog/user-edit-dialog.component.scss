@@ -1,0 +1,16 @@
+@media screen and (max-width: 40rem) {
+  :host ::ng-deep {
+    .p-fluid {
+      width: 90% !important;
+      .p-dialog-footer {
+        padding-top: 10px;
+      }
+    }
+    .custom {
+      width: 90% !important;
+      .p-dialog-footer {
+        padding-top: 10px;
+      }
+    }
+  }
+}
