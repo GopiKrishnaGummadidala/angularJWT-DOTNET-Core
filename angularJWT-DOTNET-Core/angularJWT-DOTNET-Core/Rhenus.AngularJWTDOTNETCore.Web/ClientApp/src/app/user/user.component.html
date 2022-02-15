@@ -5,7 +5,6 @@
   [paginator]="true"
   [globalFilterFields]="['firstName', 'lastName', 'dob']"
   responsiveLayout="stack"
-  [(selection)]="selectedUsers"
   [rowHover]="true"
   dataKey="id"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -34,9 +33,6 @@
   </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 3rem">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-      </th>
       <th pSortableColumn="firstName">
         First Name <p-sortIcon field="firstName"></p-sortIcon>
       </th>
@@ -49,9 +45,6 @@
   </ng-template>
   <ng-template pTemplate="body" let-user>
     <tr>
-      <td>
-        <p-tableCheckbox [value]="user"></p-tableCheckbox>
-      </td>
       <td>
         <span class="p-column-title"><b>First Name</b></span
         >{{ user.firstName }}

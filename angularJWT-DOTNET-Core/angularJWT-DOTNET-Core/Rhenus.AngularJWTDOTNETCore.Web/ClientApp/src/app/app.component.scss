@@ -1,0 +1,7 @@
+@media screen and (max-width: 40rem) {
+  :host ::ng-deep {
+    .p-toast.p-component.p-toast-top-center {
+      width: 80% !important;
+    }
+  }
+}

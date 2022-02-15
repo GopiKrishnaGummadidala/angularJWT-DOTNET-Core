@@ -5,6 +5,7 @@ import { UiLoaderService } from "./services/ui-loader.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
   public uiBlocked$: Observable<boolean>;
