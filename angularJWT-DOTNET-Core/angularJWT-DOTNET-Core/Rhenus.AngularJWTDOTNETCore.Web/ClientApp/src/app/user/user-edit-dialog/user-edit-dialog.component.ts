@@ -1,6 +1,13 @@
 import { User } from "./../../models/user.model";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-user-edit-dialog",
@@ -25,9 +32,20 @@ export class UserEditDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.userForm = this.formBuilder.group({
-      firstName: ["", Validators.required],
-      lastName: ["", Validators.required],
-      dob: ["", [Validators.required]],
+      firstName: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ]),
+      lastName: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ]),
+      dob: new FormControl("", [
+        Validators.required,
+        (c) => this.validateDOB(c),
+      ]),
     });
   }
 
@@ -57,5 +75,16 @@ export class UserEditDialogComponent implements OnInit {
     this.saveClicked.emit(this.user);
     this.hideDialog();
     this.user = new User();
+  }
+
+  private validateDOB(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
+    const validFrom = control.value;
+    const today = new Date();
+    if (today <= new Date(validFrom)) {
+      return { "DOB is invalid": false };
+    }
+    return {};
   }
 }

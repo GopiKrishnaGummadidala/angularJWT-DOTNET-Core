@@ -55,6 +55,7 @@
           pRipple
           label="Save"
           icon="pi pi-check"
+          [disabled]="userForm.invalid"
           (click)="saveUser()"
         ></button>
       </div>
